@@ -21,15 +21,15 @@ const styles = theme => ({
   },
 })
 
-const SubmitButton = ({ classes, text, isLoading }) => (
+const SubmitButton = ({ classes, text, isLoading, ...props }) => (
   <div className={classes.wrapper}>
     <Button
       type="submit"
       fullWidth
       variant="raised"
       color="secondary"
-      disabled={isLoading}
       className={classes.root}
+      {...props}
     >
       {text}
     </Button>

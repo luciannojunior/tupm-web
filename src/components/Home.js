@@ -7,7 +7,7 @@ import InputLabel from '@material-ui/core/InputLabel'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 import withStyles from '@material-ui/core/styles/withStyles'
-import SubmitButton from './SubmitButton';
+import SubmitButton from './SubmitButton'
 
 const styles = theme => ({
   layout: {
@@ -32,7 +32,7 @@ const styles = theme => ({
   logo: {
     width: '50%',
     marginTop: '-4rem',
-    marginBottom: 10
+    marginBottom: 10,
   },
   avatar: {
     margin: theme.spacing.unit,
@@ -47,26 +47,59 @@ const styles = theme => ({
   },
 })
 
-const Home = ({ classes }) => (
-  <React.Fragment>
-    <CssBaseline />
-    <main className={classes.layout}>
-      <Paper className={classes.paper}>
-        <img src="assets/logo_v1.png" className={classes.logo}/>
-        <Typography variant="headline">Busque um artista</Typography>
-        <form className={classes.form}>
-          <FormControl margin="normal" required fullWidth>
-            <InputLabel htmlFor="email">digite o usuário</InputLabel>
-            <Input id="email" name="email" autoComplete="email" autoFocus />
-          </FormControl>
-          <div className={classes.submitContainer}>
-          <SubmitButton text="Buscar Usuário" isLoading/>
-          </div>
-        </form>
-      </Paper>
-    </main>
-  </React.Fragment>
-)
+class Home extends React.Component {
+  state = {
+    usuario: null,
+    isLoading: false,
+  }
+
+  handleUsuario = (ev) => {
+    const usuario = ev.target.value
+    this.setState({ ...this.state, usuario })
+  }
+
+  handleSubmit = () =>{
+    this.setState({ ...this.state, isLoading: true })
+  }
+
+  render() {
+    const { classes } = this.props
+
+    const { isLoading, usuario } = this.state
+
+    return (
+      <React.Fragment>
+        <CssBaseline />
+        <main className={classes.layout}>
+          <Paper className={classes.paper}>
+            <img src="assets/logo_v1.png" className={classes.logo} />
+            <Typography variant="headline">Busque um artista</Typography>
+            <form className={classes.form}>
+              <FormControl margin="normal" required fullWidth>
+                <InputLabel htmlFor="usuario">digite o usuário</InputLabel>
+                <Input
+                  id="usuario"
+                  name="usuario"
+                  autoFocus
+                  onChange={this.handleUsuario}
+                />
+              </FormControl>
+              <div className={classes.submitContainer}>
+                <SubmitButton
+                  type="button"
+                  text="Buscar Usuário"
+                  onClick={this.handleSubmit}
+                  disabled={!usuario || isLoading}
+                  isLoading={isLoading}
+                />
+              </div>
+            </form>
+          </Paper>
+        </main>
+      </React.Fragment>
+    )
+  }
+}
 
 Home.propTypes = {
   classes: PropTypes.object.isRequired,

@@ -49,13 +49,14 @@ const styles = theme => ({
 
 class Home extends React.Component {
   state = {
-    usuario: null,
+    username: null,
     isLoading: false,
+    usuario: null
   }
 
   handleUsuario = (ev) => {
-    const usuario = ev.target.value
-    this.setState({ ...this.state, usuario })
+    const username = ev.target.value
+    this.setState({ ...this.state, username })
   }
 
   handleSubmit = () =>{
@@ -65,7 +66,7 @@ class Home extends React.Component {
   render() {
     const { classes } = this.props
 
-    const { isLoading, usuario } = this.state
+    const { isLoading, username } = this.state
 
     return (
       <React.Fragment>
@@ -76,10 +77,10 @@ class Home extends React.Component {
             <Typography variant="headline">Busque um artista</Typography>
             <form className={classes.form}>
               <FormControl margin="normal" required fullWidth>
-                <InputLabel htmlFor="usuario">digite o usuário</InputLabel>
+                <InputLabel htmlFor="username">digite o usuário</InputLabel>
                 <Input
-                  id="usuario"
-                  name="usuario"
+                  id="username"
+                  name="username"
                   autoFocus
                   onChange={this.handleUsuario}
                 />
@@ -95,6 +96,7 @@ class Home extends React.Component {
               </div>
             </form>
           </Paper>
+          <Artista/>
         </main>
       </React.Fragment>
     )

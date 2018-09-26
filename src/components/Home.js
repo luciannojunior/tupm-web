@@ -8,6 +8,7 @@ import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 import withStyles from '@material-ui/core/styles/withStyles'
 import SubmitButton from './SubmitButton'
+import Artist from './Artist'
 
 const styles = theme => ({
   layout: {
@@ -90,13 +91,13 @@ class Home extends React.Component {
                   type="button"
                   text="Buscar Usuário"
                   onClick={this.handleSubmit}
-                  disabled={!usuario || isLoading}
+                  disabled={!username || isLoading}
                   isLoading={isLoading}
                 />
               </div>
             </form>
           </Paper>
-          <Artista/>
+          <Artist/>
         </main>
       </React.Fragment>
     )

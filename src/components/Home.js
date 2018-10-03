@@ -8,7 +8,6 @@ import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 import withStyles from '@material-ui/core/styles/withStyles'
 import SubmitButton from './SubmitButton'
-import Artist from './Artist'
 
 const styles = theme => ({
   layout: {
@@ -61,6 +60,9 @@ class Home extends React.Component {
   }
 
   handleSubmit = () =>{
+    const { history } = this.props
+    const { username } = this.state
+    history.push('/artist/' + username);
     this.setState({ ...this.state, isLoading: true })
   }
 
@@ -97,7 +99,6 @@ class Home extends React.Component {
               </div>
             </form>
           </Paper>
-          <Artist/>
         </main>
       </React.Fragment>
     )
